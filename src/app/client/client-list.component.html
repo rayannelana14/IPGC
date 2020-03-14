@@ -1,0 +1,41 @@
+<div class='card'>
+    <div class='card-header'>
+        {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <a routerLinkActive='active' [routerLink]="['/clients/add']">
+                    <button class='btn btn-primary'>
+                        Adicionar Cliente
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class='table-responsive'>
+            <table class='table' *ngIf='clients && clients.length'>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let client of filteredClients'>
+                        <td>
+                            <a [routerLink]="['/clients', client.id]">
+                                {{ client.name }}
+                            </a>
+                        </td>
+                        <td>{{ client.email }}</td>
+                        <td>{{ client.telefone }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>
